@@ -62,7 +62,6 @@ If objFS.FolderExists(imgFolderName) Then
 	Set objWshShell = Nothing
 
 	WScript.Sleep 3000	' heicファイル終了まで待つ、余裕持って3秒
-	Set imgFolderObj = Nothing
 	'===============================
 	' サイズ変更
 	'===============================	
