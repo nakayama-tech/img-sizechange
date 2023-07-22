@@ -14,6 +14,9 @@ Dim imgObjOpen						'イメージ（現在）
 Dim baseSize						'基本サイズ
 Dim objImgChange					'イメージ（変換後）
 Dim imgName							'ファイル名
+Dim runFolder
+
+Set runFolder = CreateObject("Scripting.FileSystemObject")
 
 imgFolderName = InputBox("画像ファイル格納場所を教えて")
 
@@ -54,9 +57,9 @@ If objFS.FolderExists(imgFolderName) Then
 	For Each imgObj In imgFolderObj.Files
 		imgExt = objFS.GetExtensionName(imgObj.name)
   		If imgExt = "heic" or imgExt = "HEIC" Then
-		  	objWshShell.Run "Powershell -ExecutionPolicy Bypass -NoExit .\ConvertTo-Jpeg.ps1 " & imgObj, 0,false
+  			WScript.echo runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj
+		  	objWshShell.Run "Powershell -ExecutionPolicy Bypass -NoExit " & runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj, 0,false
 		  	WScript.Sleep 1000	' heicファイルが重いことを考慮して1秒待つ
-		  	Set objWshShell = Nothing
 		End If
 	Next
 	Set objWshShell = Nothing
@@ -128,3 +131,4 @@ Else
 End If
 
 set objFS = Nothing
+set runFolder = Nothing
