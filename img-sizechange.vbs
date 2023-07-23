@@ -95,15 +95,15 @@ If objFS.FolderExists(imgFolderName) Then
 					' 画像の大きさ指定（1つ目の要素）※横長
 					'==============================================
 					objImgChange.Filters.Add(objImgChange.FilterInfos("Scale").FilterID)	' フィルターIDセット
-					objImgChange.Filters(1).Properties("MaximumWidth").Value = 1200			' 幅
-					objImgChange.Filters(1).Properties("MaximumHeight").Value = imgObjOpen.Height * (1200/imgObjOpen.Width)	' 高さ
+					objImgChange.Filters(1).Properties("MaximumWidth").Value = baseSize			' 幅
+					objImgChange.Filters(1).Properties("MaximumHeight").Value = imgObjOpen.Height * (baseSize/imgObjOpen.Width)	' 高さ
 				Else
 					'==============================================
 					' 画像の大きさ指定（1つ目の要素）※長
 					'==============================================
 					objImgChange.Filters.Add(objImgChange.FilterInfos("Scale").FilterID)	' フィルターIDセット
-					objImgChange.Filters(1).Properties("MaximumWidth").Value = imgObjOpen.Width * (1200/imgObjOpen.Height)			' 幅
-					objImgChange.Filters(1).Properties("MaximumHeight").Value = 1200	' 高さ
+					objImgChange.Filters(1).Properties("MaximumWidth").Value = imgObjOpen.Width * (baseSize/imgObjOpen.Height)			' 幅
+					objImgChange.Filters(1).Properties("MaximumHeight").Value = baseSize	' 高さ
 				End If
 				'==============================================
 				' コンバート情報
