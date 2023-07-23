@@ -57,7 +57,7 @@ If objFS.FolderExists(imgFolderName) Then
 	For Each imgObj In imgFolderObj.Files
 		imgExt = objFS.GetExtensionName(imgObj.name)
   		If imgExt = "heic" or imgExt = "HEIC" Then
-  			WScript.echo runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj
+  			'WScript.echo runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj
 		  	objWshShell.Run "Powershell -ExecutionPolicy Bypass -NoExit " & runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj, 0,false
 		  	WScript.Sleep 1000	' heicファイルが重いことを考慮して1秒待つ
 		End If
