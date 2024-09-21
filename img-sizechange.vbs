@@ -56,7 +56,7 @@ If objFS.FolderExists(imgFolderName) Then
 	Set objWshShell = Wscript.CreateObject("WScript.Shell")
 	For Each imgObj In imgFolderObj.Files
 		imgExt = objFS.GetExtensionName(imgObj.name)
-  		If imgExt = "heic" or imgExt = "HEIC" Then
+  		If imgExt = "heic" or imgExt = "HEIC" or imgExt = "webp" Then
   			'WScript.echo runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj
 		  	objWshShell.Run "Powershell -ExecutionPolicy Bypass -NoExit " & runFolder.getParentFolderName(WScript.ScriptFullName) & "\ConvertTo-Jpeg.ps1 " & imgObj, 0,false
 		  	WScript.Sleep 1000	' heicファイルが重いことを考慮して1秒待つ
