@@ -15,6 +15,7 @@ Dim baseSize						'基本サイズ
 Dim objImgChange					'イメージ（変換後）
 Dim imgName							'ファイル名
 Dim runFolder
+Dim deleteImgObj
 
 Set runFolder = CreateObject("Scripting.FileSystemObject")
 
@@ -112,8 +113,16 @@ If objFS.FolderExists(imgFolderName) Then
 				objImgChange.Filters(2).Properties("FormatID").Value = wiaFormatJPEG 
 				Set imgObjOpen = objImgChange.Apply(imgObjOpen)	'
 				imgObjOpen.SaveFile(objFS.GetAbsolutePathName(imgKakuchoushiChangeAfterFolder & "\" & objFS.getBaseName(imgName) & ".jpg"))
+				' 20240923 カレントディレクトリのjpgを削除
+				Set deleteImgObj = CreateObject("Scripting.FileSystemObject")
+				deleteImgObj.DeleteFile imgFolderName & "\" & objFS.getBaseName(imgName) & ".jpg"
+				' 20240923 ここまで
 
  				Set objImgChange = Nothing
+ 				' 20240923 カレントディレクトリのjpgを削除
+ 				Set deleteImgObj = Nothing
+ 				' 20240923 ここまで
+ 				
 
 			End If
 			
